@@ -186,46 +186,79 @@ customer_data['Cluster'] = kmeans.fit_predict(X_scaled)
 
 print(f"Assigned {optimal_k} clusters to the customers.")
 
-# 6. Cluster Interpretation
-print("\n--- Cluster Interpretation ---")
-cluster_summary = customer_data.groupby('Cluster').agg({
+# 6. Cluster Interpretation & Business Analysis
+print("\n--- Cluster Interpretation & Business Analysis ---")
+
+# Define meaningful cluster names based on RFM characteristics
+# Note: These names are mapped based on the interpretation of the cluster centroids
+cluster_map = {
+    0: 'Potential Loyalists',
+    1: 'At-Risk Customers',
+    2: 'Inactive / Lost',
+    3: 'Champions'
+}
+customer_data['Segment'] = customer_data['Cluster'].map(cluster_map)
+
+# Calculate Business Metrics per Segment
+segment_analysis = customer_data.groupby('Segment').agg({
+    'CustomerID': 'count',
     'Recency': 'mean',
     'Frequency': 'mean',
-    'Monetary': ['mean', 'count']
+    'Monetary': ['mean', 'sum']
 }).reset_index()
 
-cluster_summary.columns = ['Cluster', 'Avg_Recency', 'Avg_Frequency', 'Avg_Monetary', 'Num_Customers']
-print(cluster_summary)
+# Flatten columns
+segment_analysis.columns = ['Segment', 'Customer_Count', 'Avg_Recency', 'Avg_Frequency', 'Avg_Spending', 'Total_Revenue']
 
-# Visualize Clusters
-plt.figure(figsize=(10, 8))
-sns.scatterplot(x='Recency', y='Monetary', hue='Cluster', data=customer_data, palette='Set1', s=100, alpha=0.7)
-plt.title('Customer Segments: Recency vs Monetary')
-plt.xlabel('Recency (Days)')
-plt.ylabel('Monetary Value')
+# Calculate percentages for business impact
+total_revenue = segment_analysis['Total_Revenue'].sum()
+total_customers = segment_analysis['Customer_Count'].sum()
+
+segment_analysis['Revenue_Contribution_%'] = (segment_analysis['Total_Revenue'] / total_revenue * 100).round(2)
+segment_analysis['Customer_Base_%'] = (segment_analysis['Customer_Count'] / total_customers * 100).round(2)
+
+# Sort by Revenue Contribution for the BA
+segment_analysis = segment_analysis.sort_values(by='Total_Revenue', ascending=False)
+
+print("\n--- Segment Business Summary ---")
+print(segment_analysis[['Segment', 'Customer_Count', 'Customer_Base_%', 'Total_Revenue', 'Revenue_Contribution_%']])
+
+# 7. Visualizing Segments for Business Stakeholders
+plt.figure(figsize=(12, 7))
+sns.scatterplot(x='Recency', y='Monetary', hue='Segment', data=customer_data, 
+                palette='viridis', s=100, alpha=0.7, style='Segment')
+plt.title('Business Segments: Recency vs Monetary Value', fontsize=15)
+plt.xlabel('Recency (Days since last purchase)', fontsize=12)
+plt.ylabel('Total Spend (Monetary Value)', fontsize=12)
+plt.legend(title='Customer Segment', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.grid(True, linestyle='--', alpha=0.6)
 plt.tight_layout()
-plt.savefig('images/cluster_scatter.png')
+plt.savefig('images/business_segments_scatter.png')
 plt.close()
 
-# Boxplots for each RFM feature by cluster
-fig, axes = plt.subplots(1, 3, figsize=(18, 5))
-sns.boxplot(x='Cluster', y='Recency', data=customer_data, ax=axes[0], palette='Set2')
-axes[0].set_title('Recency by Cluster')
-axes[0].set_xlabel('Cluster')
-axes[0].set_ylabel('Recency (Days)')
-sns.boxplot(x='Cluster', y='Frequency', data=customer_data, ax=axes[1], palette='Set2')
-axes[1].set_title('Frequency by Cluster')
-axes[1].set_xlabel('Cluster')
-axes[1].set_ylabel('Frequency (Purchases)')
-sns.boxplot(x='Cluster', y='Monetary', data=customer_data, ax=axes[2], palette='Set2')
-axes[2].set_title('Monetary by Cluster')
-axes[2].set_xlabel('Cluster')
-axes[2].set_ylabel('Monetary Value')
+# Revenue vs Customer Count comparison
+fig, ax1 = plt.subplots(figsize=(12, 6))
+ax2 = ax1.twinx()
+
+sns.barplot(x='Segment', y='Total_Revenue', data=segment_analysis, ax=ax1, palette='Blues_d', alpha=0.7)
+sns.lineplot(x='Segment', y='Customer_Count', data=segment_analysis, ax=ax2, color='red', marker='o', linewidth=2)
+
+ax1.set_title('Revenue Contribution vs. Customer Count by Segment', fontsize=15)
+ax1.set_ylabel('Total Revenue', color='blue', fontsize=12)
+ax2.set_ylabel('Number of Customers', color='red', fontsize=12)
 plt.tight_layout()
-plt.savefig('images/cluster_boxplots.png')
+plt.savefig('images/revenue_vs_customers.png')
 plt.close()
 
-# Save final customer data
-customer_data.to_csv('outputs/customer_segments.csv', index=False)
-print("Saved customer segments to outputs/customer_segments.csv")
+# 8. Save Final Business Outputs
+# Save the full dataset with segment names
+customer_data.to_csv('outputs/customer_segments_final.csv', index=False)
+
+# Save the summary report for Excel/PowerPoint
+segment_analysis.to_csv('outputs/business_summary_report.csv', index=False)
+
+print("\nBusiness analysis complete.")
+print("- Final segmented data: outputs/customer_segments_final.csv")
+print("- Business summary report: outputs/business_summary_report.csv")
+print("- New business visualizations saved to /images")
 print("Project Execution Completed Successfully.")
