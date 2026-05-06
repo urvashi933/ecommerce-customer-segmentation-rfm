@@ -14,7 +14,7 @@ print("Starting E-Commerce Customer Segmentation Project...")
 
 # 1. Load Data
 print("\n--- Loading Data ---")
-df = pd.read_csv('part_1_ecommerce_customer_segmentation.csv')
+df = pd.read_csv('dataset/part_1_ecommerce_customer_segmentation.csv')
 print(f"Initial Dataset Shape: {df.shape}")
 
 # 2. Data Cleaning
