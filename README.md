@@ -112,6 +112,12 @@ To segment the customers, we applied the K-Means clustering algorithm. We follow
 ## 6. Cluster Interpretation
 To understand the underlying characteristics of the 4 clusters, we analyzed their averages across the RFM dimensions:
 
+![Cluster Scatter](images/cluster_scatter.png)
+*Interpretation*: This scatter plot visually separates the customer segments. Cluster 3 stands out with extremely high monetary values, while Cluster 2 is clustered near the bottom right with high recency (inactive) and low spending.
+
+![Cluster Boxplots](images/cluster_boxplots.png)
+*Interpretation*: The boxplots clearly show the distinct RFM distributions for each segment. For example, Cluster 3 dominates in Frequency and Monetary value, while Cluster 2 has the highest median Recency (meaning they haven't purchased in a long time).
+
 **Cluster 0**
 - **Possible customer type**: Recent Average Buyers / Promising
 - **Customer behavior**: These customers have interacted with the business very recently but have only made a few purchases overall.
@@ -147,11 +153,11 @@ To understand the underlying characteristics of the 4 clusters, we analyzed thei
 ## Final Business Recommendations
 Based on the cluster interpretation and EDA, here are the actionable recommendations for the business:
 
-- **Loyalty rewards for high-value customers (Cluster 3)**: Implement an exclusive VIP loyalty program. Offer early access to new product drops, personalized shopping experiences, and premium customer support to ensure they never leave for a competitor.
-- **Personalized offers for frequent buyers (Cluster 0)**: To encourage these recent, promising buyers to increase their frequency, send them personalized offers based on what they just bought. For example, if they bought a 'Smart Watch Strap', offer a small discount on a matching accessory to turn them into frequent buyers.
-- **Special discounts for customers with declining activity (Cluster 1)**: Since these customers are at-risk, send aggressive "We miss you" win-back campaigns featuring special high-value discounts to incentivize their return.
-- **Re-engagement campaigns for inactive customers (Cluster 2)**: Do not spend heavy marketing budget here. Limit efforts to generalized, low-cost re-engagement campaigns like seasonal sale announcements or generic newsletters.
-- **Country-specific marketing strategies**: Since the UK heavily dominates sales, allocate the majority of the marketing budget locally to defend market share. Additionally, consider rolling out localized, country-specific campaigns and localized shipping discounts to boost sales in strong secondary markets like India, France, and Germany.
+- **Cluster 3 (High Value Loyal)**: Customers in Cluster 3 have the highest monetary value and purchase frequency, along with good recency. The company should target them with an exclusive VIP loyalty program, offering early access to new products and premium customer support to retain their high value.
+- **Cluster 0 (Recent Promising Buyers)**: Customers in Cluster 0 have interacted recently and show average spending, but their overall frequency is still developing. The company should target them with personalized cross-sell offers based on their recent purchases to increase their purchase frequency.
+- **Cluster 1 (At-Risk / Declining)**: Customers in Cluster 1 have high historical monetary value but very low recent activity. The company should target them with aggressive, personalized win-back campaigns featuring high-value discounts to incentivize their return before they churn completely.
+- **Cluster 2 (Inactive / Occasional)**: Customers in Cluster 2 have the lowest monetary value, lowest frequency, and extremely low recent activity (long recency). The company should avoid spending heavy marketing budget here, and instead target them with generalized, low-cost re-engagement campaigns like seasonal newsletters.
+- **Country-Specific Growth**: The UK market generates the vast majority of sales. The company should allocate the majority of the localized marketing budget to the UK to defend market share, while testing targeted shipping discounts in strong secondary markets like India, France, and Germany to boost international sales.
 
 ## How to Run the Project
 1. Clone this repository to your local machine.
