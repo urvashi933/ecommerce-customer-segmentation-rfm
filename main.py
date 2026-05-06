@@ -73,12 +73,15 @@ customer_data = df.groupby('CustomerID').agg({
 customer_data.rename(columns={
     'InvoiceDate': 'Recency',
     'InvoiceNo': 'Frequency',
-    'TotalRevenue': 'Monetary'
+    'TotalRevenue': 'Monetary',
+    'Quantity': 'TotalQuantity',
+    'StockCode': 'UniqueProducts'
 }, inplace=True)
 
 # Calculate Average Order Value (AOV)
 customer_data['AverageOrderValue'] = customer_data['Monetary'] / customer_data['Frequency']
 customer_data['TotalPurchases'] = customer_data['Frequency']
+customer_data['TotalRevenue'] = customer_data['Monetary']
 
 print(f"Customer Level Data Shape: {customer_data.shape}")
 
@@ -144,6 +147,18 @@ plt.xlabel('Average Order Value')
 plt.ylabel('Number of Customers')
 plt.tight_layout()
 plt.savefig('images/aov_distribution.png')
+plt.close()
+
+# Are there outliers in quantity, price, or revenue?
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+sns.boxplot(y=df['Quantity'], ax=axes[0], color='skyblue')
+axes[0].set_title('Outliers in Quantity')
+sns.boxplot(y=df['UnitPrice'], ax=axes[1], color='lightgreen')
+axes[1].set_title('Outliers in Unit Price')
+sns.boxplot(y=df['TotalRevenue'], ax=axes[2], color='salmon')
+axes[2].set_title('Outliers in Total Revenue')
+plt.tight_layout()
+plt.savefig('images/outliers_detection.png')
 plt.close()
 
 # 5. Customer Segmentation using K-Means

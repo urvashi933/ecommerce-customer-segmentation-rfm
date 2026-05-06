@@ -104,7 +104,8 @@ To deeply understand customer and sales behavior, we generated several visualiza
 *Interpretation*: The distributions for Frequency, Monetary value, and Average Order Value are heavily right-skewed. The vast majority of customers purchase only 1-3 times and spend moderate amounts, whereas a small "long tail" of customers buys extremely often and spends vastly more.
 
 **5. Are there outliers in quantity, price, or revenue?**
-*Interpretation*: Yes, significant outliers exist. Prior to cleaning, there were extreme negative outliers (returns) and zero-priced items. Even after cleaning, the heavy right-skew in our distributions reveals positive outliers: a handful of customers (likely B2B wholesale buyers) who purchase items in massive quantities, generating exceptionally high revenue per order compared to the median shopper.
+![Outlier Detection](images/outliers_detection.png)
+*Interpretation*: Yes, significant outliers exist. The boxplots for Quantity, Unit Price, and Total Revenue show several data points far beyond the whiskers. These represent bulk purchases (high quantity) or premium items (high price), which significantly contribute to the total revenue. Specifically, a few transactions have quantities much higher than the average, suggesting wholesale or B2B activity.
 
 **6. Which customers appear to be high-value customers?**
 *Interpretation*: High-value customers are easily identified in the extreme right tails of the Frequency and Monetary histograms. These are the VIP shoppers who place orders frequently and consistently have high Average Order Values, representing the core profitability of the business.
