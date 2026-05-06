@@ -6,20 +6,42 @@ E-Commerce Customer Segmentation: Identifying High-Value Customers and Improving
 ## Business Problem
 The e-commerce company wants to design targeted marketing campaigns, improve customer retention, and identify high-value customer groups to optimize marketing spend. Without understanding different customer personas, the company risks sending generic promotions that do not resonate with their audience, leading to lost revenue and potential customer churn. The goal is to use historical transaction data to segment customers based on their purchasing behavior.
 
-## Dataset Description
-The dataset contains transactional data representing individual product purchases. 
-- **InvoiceNo**: Unique identifier for the transaction (invoices starting with 'C' indicate cancellations).
-- **StockCode**: Unique identifier for the product.
-- **Description**: Product name.
-- **Category**: Product category.
-- **Quantity**: Number of items purchased in the transaction.
-- **InvoiceDate**: Date and time of the transaction.
-- **UnitPrice**: Price per unit of the product.
-- **CustomerID**: Unique identifier for the customer.
-- **Country**: Country where the customer resides.
+## 1. Data Understanding
+The dataset provides transactional information for an e-commerce platform. Here is a clear breakdown of the dataset characteristics:
 
-**Business Scope**: This dataset belongs to a global e-commerce retailer. It allows us to answer questions like: Which products are top sellers? Who are our most valuable customers? Which customers are at risk of churning?
-**Limitations**: We cannot answer questions about customer demographics (age, gender), marketing acquisition channels, or product costs/profit margins due to missing information.
+- **What each column represents**:
+  - `InvoiceNo`: Unique identifier for the transaction. If it starts with 'C', the order was cancelled or returned.
+  - `StockCode`: Unique identifier for the specific product.
+  - `Description`: The name or description of the product.
+  - `Category`: The category the product belongs to (e.g., Grocery, Electronics).
+  - `Quantity`: The number of items purchased in that specific transaction line.
+  - `InvoiceDate`: The date and time the transaction occurred.
+  - `UnitPrice`: The price per single unit of the product.
+  - `CustomerID`: Unique identifier for the customer making the purchase.
+  - `Country`: The country where the customer resides.
+
+- **What a single row represents**:
+  A single row represents a **single product line-item within a specific transaction**. This means if a customer buys 5 different products in one checkout, it will be recorded as 5 separate rows sharing the same `InvoiceNo` and `CustomerID`.
+
+- **What type of business this dataset belongs to**:
+  This dataset belongs to a **global e-commerce retail business** that sells a wide variety of consumer goods (like electronics, apparel, and home items) to customers across multiple countries.
+
+- **What kind of customer or sales analysis can be done using this dataset**:
+  - **RFM Analysis**: Segmenting customers based on Recency, Frequency, and Monetary value.
+  - **Cohort Analysis**: Tracking customer retention over time.
+  - **Market Basket Analysis**: Identifying which products are frequently bought together.
+  - **Sales Trend Analysis**: Understanding seasonality and peak sales periods.
+
+- **What business questions can be answered using this dataset**:
+  - Who are our most valuable customers (VIPs) and who are at risk of churning?
+  - Which countries generate the most revenue?
+  - What are the top-selling products by quantity and revenue?
+  - What is the average order value (AOV) per customer?
+
+- **What business questions cannot be answered due to missing information**:
+  - We cannot answer questions about **Customer Demographics** (e.g., age, gender, occupation) because that data is missing.
+  - We cannot calculate **Profit Margins** because there is no data on the cost of goods sold (COGS).
+  - We cannot determine **Marketing ROI** or **Customer Acquisition Cost** because we do not know which marketing channels brought the customers to the store.
 
 ## Data Cleaning Summary
 - **Duplicates**: Removed duplicate rows.
