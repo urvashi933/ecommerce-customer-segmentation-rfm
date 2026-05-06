@@ -159,8 +159,9 @@ Based on the cluster interpretation and EDA, here are the actionable recommendat
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the main script to clean data, perform EDA, and generate customer segments:
+3. Download the dataset using the link provided in `dataset_source.md` and place the CSV file inside a `dataset/` folder in the root directory.
+4. Run the main script to clean data, perform EDA, and generate customer segments:
    ```bash
    python main.py
    ```
-4. The output visualizations will be saved in the `images/` directory, and the final segmented dataset will be available in the `outputs/` directory.
+5. The output visualizations will be saved in the `images/` directory, and the final segmented dataset will be available in the `outputs/` directory.
