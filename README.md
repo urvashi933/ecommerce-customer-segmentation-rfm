@@ -98,10 +98,16 @@ To deeply understand customer and sales behavior, we generated several visualiza
 *Interpretation*: High-value customers are easily identified in the extreme right tails of the Frequency and Monetary histograms. These are the VIP shoppers who place orders frequently and consistently have high Average Order Values, representing the core profitability of the business.
 
 ## 5. Customer Segmentation using K-Means
-- Used the **K-Means algorithm** for clustering based on the RFM features.
-- Applied **Log Transformation** to Recency, Frequency, and Monetary to normalize the heavily skewed distributions.
-- **Standard Scaler** was used to bring all features to a common scale with mean=0 and variance=1.
-- Determined the optimal number of clusters (K=4) using the **Elbow Method**.
+To segment the customers, we applied the K-Means clustering algorithm. We followed these exact steps:
+
+- **Select relevant features for clustering**: We selected **Recency, Frequency, and Monetary (RFM)** as the core features, as they best represent customer purchasing behavior.
+- **Normalize or scale the data**: Because K-Means is distance-based and the RFM distributions are heavily right-skewed, we first applied a **Log Transformation** to handle the skewness. We then used a **Standard Scaler** to scale the data so that all features have a mean of 0 and a variance of 1.
+- **Use the elbow method to choose a suitable number of clusters**: We calculated the Within-Cluster Sum of Squares (WCSS) for K values from 1 to 10.
+  ![Elbow Method](images/elbow_method.png)
+  *Interpretation*: The "elbow" of the curve occurs at K=4, indicating that 4 is the optimal number of clusters to balance variance explained and model simplicity.
+- **Train the K-Means model**: We trained the K-Means model using `n_clusters=4` on the scaled RFM data.
+- **Assign cluster labels to customers**: The trained model generated cluster labels (0, 1, 2, 3), which were assigned and appended back to the original customer-level dataset as a new `Cluster` column.
+- **Analyze each cluster**: We grouped the customers by their assigned cluster to calculate the average Recency, Frequency, and Monetary values for each group. The visual separation of these clusters and their detailed business analysis are provided in Section 6 below.
 
 ## 6. Cluster Interpretation
 1. **Cluster 0: Recent Average Buyers** (Avg Recency: ~18 days, Freq: 1.8, Spend: ~$10,500)
