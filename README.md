@@ -72,9 +72,30 @@ We also created an RFM table to capture the core dimensions of customer behavior
 - **Monetary**: How much the customer has spent (same as Total revenue per customer).
 
 ## 4. Exploratory Data Analysis
-- **Top Countries**: The United Kingdom generates the vast majority of sales, followed closely by countries like India, France, Germany, and the Netherlands.
-- **Top Products by Revenue/Quantity**: Specific products drive the bulk of revenue, and observing these items can guide inventory and promotional strategies.
-- **Distributions**: Recency, Frequency, and Monetary distributions are heavily right-skewed. Most customers purchase infrequently and spend smaller amounts, while a small proportion generates massive revenue.
+To deeply understand customer and sales behavior, we generated several visualizations (saved in the `/images` folder) to answer key business questions:
+
+**1. Which countries generate the highest sales?**
+![Top Countries Sales](images/top_countries_sales.png)
+*Interpretation*: The United Kingdom is by far the most dominant market, generating the highest sales volume. It is followed by India, France, Germany, and the Netherlands, which represent strong secondary markets.
+
+**2. Which products are sold the most?**
+![Top Products by Quantity](images/top_products_quantity.png)
+*Interpretation*: Items such as 'Organic Cotton T-Shirt' and 'Smart Watch Strap' are sold in the highest volumes, indicating strong consumer demand for everyday basics and tech accessories.
+
+**3. Which products generate the highest revenue?**
+![Top Products by Revenue](images/top_products_revenue.png)
+*Interpretation*: While basics sell in high volume, high-ticket items like 'Running Shoes', 'Bluetooth Speakers', and 'Denim Jackets' drive the majority of top-line revenue.
+
+**4. What is the distribution of customer purchase frequency & order value?**
+![RFM Distributions](images/rfm_distributions.png)
+![AOV Distribution](images/aov_distribution.png)
+*Interpretation*: The distributions for Frequency, Monetary value, and Average Order Value are heavily right-skewed. The vast majority of customers purchase only 1-3 times and spend moderate amounts, whereas a small "long tail" of customers buys extremely often and spends vastly more.
+
+**5. Are there outliers in quantity, price, or revenue?**
+*Interpretation*: Yes, significant outliers exist. Prior to cleaning, there were extreme negative outliers (returns) and zero-priced items. Even after cleaning, the heavy right-skew in our distributions reveals positive outliers: a handful of customers (likely B2B wholesale buyers) who purchase items in massive quantities, generating exceptionally high revenue per order compared to the median shopper.
+
+**6. Which customers appear to be high-value customers?**
+*Interpretation*: High-value customers are easily identified in the extreme right tails of the Frequency and Monetary histograms. These are the VIP shoppers who place orders frequently and consistently have high Average Order Values, representing the core profitability of the business.
 
 ## 5. Customer Segmentation using K-Means
 - Used the **K-Means algorithm** for clustering based on the RFM features.
