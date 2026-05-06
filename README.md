@@ -6,7 +6,7 @@ E-Commerce Customer Segmentation: Identifying High-Value Customers and Improving
 ## Business Problem
 The e-commerce company wants to design targeted marketing campaigns, improve customer retention, and identify high-value customer groups to optimize marketing spend. Without understanding different customer personas, the company risks sending generic promotions that do not resonate with their audience, leading to lost revenue and potential customer churn. The goal is to use historical transaction data to segment customers based on their purchasing behavior.
 
-## 1. Data Understanding
+## Dataset Description (Data Understanding)
 The dataset provides transactional information for an e-commerce platform. Here is a clear breakdown of the dataset characteristics:
 
 - **What each column represents**:
@@ -43,7 +43,7 @@ The dataset provides transactional information for an e-commerce platform. Here 
   - We cannot calculate **Profit Margins** because there is no data on the cost of goods sold (COGS).
   - We cannot determine **Marketing ROI** or **Customer Acquisition Cost** because we do not know which marketing channels brought the customers to the store.
 
-## 2. Data Cleaning
+## Data Cleaning Summary
 Before diving into analysis, the dataset required rigorous cleaning to ensure data integrity. Here is a clear explanation of every cleaning step performed:
 
 - **Missing customer IDs**: Dropped records where `CustomerID` was missing. Since the goal is customer segmentation, any transaction that cannot be tied to a specific customer is unusable.
@@ -54,7 +54,7 @@ Before diving into analysis, the dataset required rigorous cleaning to ensure da
 - **Duplicate records**: Removed exact duplicate rows to prevent artificially inflating a customer's purchase frequency or monetary value.
 - **Incorrect data types**: Converted `InvoiceDate` from a string into a proper Datetime object for accurate Recency calculations. Converted `CustomerID` to a string since it is a categorical identifier, not a numeric metric.
 
-## 3. Feature Engineering
+## Feature Engineering Summary
 To perform customer-level segmentation, the transaction data was aggregated from the invoice level to the customer level. We created the following specific features:
 
 **Customer-Level Features:**
@@ -71,7 +71,7 @@ We also created an RFM table to capture the core dimensions of customer behavior
 - **Frequency**: How often the customer purchases (same as Total number of purchases).
 - **Monetary**: How much the customer has spent (same as Total revenue per customer).
 
-## 4. Exploratory Data Analysis
+## EDA Insights
 To deeply understand customer and sales behavior, we generated several visualizations (saved in the `/images` folder) to answer key business questions:
 
 **1. Which countries generate the highest sales?**
@@ -97,7 +97,7 @@ To deeply understand customer and sales behavior, we generated several visualiza
 **6. Which customers appear to be high-value customers?**
 *Interpretation*: High-value customers are easily identified in the extreme right tails of the Frequency and Monetary histograms. These are the VIP shoppers who place orders frequently and consistently have high Average Order Values, representing the core profitability of the business.
 
-## 5. Customer Segmentation using K-Means
+## Clustering Approach
 To segment the customers, we applied the K-Means clustering algorithm. We followed these exact steps:
 
 - **Select relevant features for clustering**: We selected **Recency, Frequency, and Monetary (RFM)** as the core features, as they best represent customer purchasing behavior.
@@ -144,7 +144,7 @@ To understand the underlying characteristics of the 4 clusters, we analyzed thei
 - **Recency pattern**: Good recency pattern (~78 days on average, indicating they return consistently over the year).
 - **Business value of the segment**: Extremely High value. This segment represents the most profitable and loyal customer base.
 
-## 7. Business Recommendations
+## Final Business Recommendations
 Based on the cluster interpretation and EDA, here are the actionable recommendations for the business:
 
 - **Loyalty rewards for high-value customers (Cluster 3)**: Implement an exclusive VIP loyalty program. Offer early access to new product drops, personalized shopping experiences, and premium customer support to ensure they never leave for a competitor.
