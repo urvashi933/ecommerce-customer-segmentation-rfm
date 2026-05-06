@@ -1,5 +1,17 @@
 # E-Commerce Customer Segmentation using RFM and Clustering
 
+## Table of Contents
+1. [Project Title](#project-title)
+2. [Business Problem](#business-problem)
+3. [Dataset Description](#dataset-description-data-understanding)
+4. [Data Cleaning Summary](#data-cleaning-summary)
+5. [Feature Engineering Summary](#feature-engineering-summary)
+6. [EDA Insights](#eda-insights)
+7. [Clustering Approach](#clustering-approach)
+8. [Cluster Interpretation](#6-cluster-interpretation)
+9. [Final Business Recommendations](#final-business-recommendations)
+10. [How to Run the Project](#how-to-run-the-project)
+
 ## Project Title
 E-Commerce Customer Segmentation: Identifying High-Value Customers and Improving Retention using Machine Learning
 
