@@ -3,20 +3,27 @@
 ## Table of Contents
 1. [Project Title](#project-title)
 2. [Business Problem](#business-problem)
-3. [Dataset Description](#dataset-description-data-understanding)
-4. [Data Cleaning Summary](#data-cleaning-summary)
-5. [Feature Engineering Summary](#feature-engineering-summary)
-6. [EDA Insights](#eda-insights)
-7. [Clustering Approach](#clustering-approach)
-8. [Cluster Interpretation](#6-cluster-interpretation)
-9. [Final Business Recommendations](#final-business-recommendations)
-10. [How to Run the Project](#how-to-run-the-project)
+3. [Dataset Source](#dataset-source)
+4. [Dataset Description](#dataset-description-data-understanding)
+5. [Tools and Libraries](#tools-and-libraries)
+6. [Data Cleaning Summary](#data-cleaning-summary)
+7. [Feature Engineering Summary](#feature-engineering-summary)
+8. [EDA Insights](#eda-insights)
+9. [Clustering Approach](#clustering-approach)
+10. [Cluster Interpretation](#6-cluster-interpretation)
+11. [Final Business Recommendations](#final-business-recommendations)
+12. [How to Run the Project](#how-to-run-the-project)
 
 ## Project Title
 E-Commerce Customer Segmentation: Identifying High-Value Customers and Improving Retention using Machine Learning
 
 ## Business Problem
 The e-commerce company wants to design targeted marketing campaigns, improve customer retention, and identify high-value customer groups to optimize marketing spend. Without understanding different customer personas, the company risks sending generic promotions that do not resonate with their audience, leading to lost revenue and potential customer churn. The goal is to use historical transaction data to segment customers based on their purchasing behavior.
+
+## Dataset Source
+The dataset used in this project is an E-Commerce transaction dataset providing line-item details for individual purchases.
+
+**Source Link:** [Google Drive Dataset Folder](https://drive.google.com/drive/folders/1XC-00liRViTlyeFaig3mYTkQcBrheph6?usp=sharing)
 
 ## Dataset Description (Data Understanding)
 The dataset provides transactional information for an e-commerce platform. Here is a clear breakdown of the dataset characteristics:
@@ -53,7 +60,17 @@ The dataset provides transactional information for an e-commerce platform. Here 
 - **What business questions cannot be answered due to missing information**:
   - We cannot answer questions about **Customer Demographics** (e.g., age, gender, occupation) because that data is missing.
   - We cannot calculate **Profit Margins** because there is no data on the cost of goods sold (COGS).
-  - We cannot determine **Marketing ROI** or **Customer Acquisition Cost** because we do not know which marketing channels brought the customers to the store.
+- We cannot determine **Marketing ROI** or **Customer Acquisition Cost** because we do not know which marketing channels brought the customers to the store.
+
+## Tools and Libraries
+This project utilizes several powerful Python libraries to perform data cleaning, exploratory data analysis, and machine learning:
+
+- **Python**: The core programming language used for the entire pipeline.
+- **Pandas**: Used for data manipulation, cleaning, and aggregating transaction-level data to the customer level.
+- **NumPy**: Used for numerical operations, specifically for applying log transformations to handle skewed data.
+- **Matplotlib**: Used for creating basic plots and fine-tuning visualization properties.
+- **Seaborn**: Used for advanced statistical visualizations, including distribution plots, bar charts, and boxplots to detect outliers.
+- **Scikit-Learn**: Used for machine learning tasks, including data scaling (StandardScaler) and implementing the K-Means clustering algorithm.
 
 ## Data Cleaning Summary
 Before diving into analysis, the dataset required rigorous cleaning to ensure data integrity. Here is a clear explanation of every cleaning step performed:
