@@ -1,18 +1,34 @@
-# E-Commerce Customer Segmentation using RFM and Clustering
+# 🎯 Part 1: E-Commerce Customer Segmentation using RFM and Clustering
 
-## Table of Contents
-1. [Project Title](#project-title)
-2. [Business Problem](#business-problem)
-3. [Dataset Source](#dataset-source)
-4. [Dataset Description](#dataset-description-data-understanding)
-5. [Tools and Libraries](#tools-and-libraries)
-6. [Data Cleaning Summary](#data-cleaning-summary)
-7. [Feature Engineering Summary](#feature-engineering-summary)
-8. [EDA Insights](#eda-insights)
-9. [Clustering Approach](#clustering-approach)
-10. [Cluster Interpretation](#6-cluster-interpretation)
-11. [Final Business Recommendations](#final-business-recommendations)
-12. [How to Run the Project](#how-to-run-the-project)
+
+<p align="center">
+  <a href="#business-problem">Business Problem</a> •
+  <a href="#dataset-source">Dataset Source</a> •
+  <a href="#dataset-description-data-understanding">Dataset Description</a> •
+  <a href="#tools-and-libraries">Tools & Libraries</a> •
+  <a href="#steps-performed">Steps Performed</a> •
+  <a href="#eda-insights">EDA Insights</a> •
+  <a href="#clustering-approach">Clustering Approach</a> •
+  <a href="#6-cluster-interpretation">Cluster Interpretation</a> •
+  <a href="#final-business-recommendations">Recommendations</a>
+</p>
+
+
+## 📌 Navigation
+- [Project Title](#project-title)
+- [Business Problem](#business-problem)
+- [Dataset Source](#dataset-source)
+- [Dataset Description](#dataset-description-data-understanding)
+- [Tools and Libraries](#tools-and-libraries)
+- [Steps Performed](#steps-performed)
+- [Data Cleaning Summary](#data-cleaning-summary)
+- [Feature Engineering Summary](#feature-engineering-summary)
+- [EDA Insights](#eda-insights)
+- [Clustering Approach](#clustering-approach)
+- [Cluster Interpretation](#6-cluster-interpretation)
+- [Final Business Recommendations](#final-business-recommendations)
+- [How to Run the Project](#how-to-run-the-project)
+
 
 ## Project Title
 E-Commerce Customer Segmentation: Identifying High-Value Customers and Improving Retention using Machine Learning
@@ -71,6 +87,18 @@ This project utilizes several powerful Python libraries to perform data cleaning
 - **Matplotlib**: Used for creating basic plots and fine-tuning visualization properties.
 - **Seaborn**: Used for advanced statistical visualizations, including distribution plots, bar charts, and boxplots to detect outliers.
 - **Scikit-Learn**: Used for machine learning tasks, including data scaling (StandardScaler) and implementing the K-Means clustering algorithm.
+
+## Steps Performed
+The project was executed through a structured data science pipeline:
+
+1.  **Data Loading**: Importing the raw e-commerce transaction dataset for processing.
+2.  **Data Cleaning**: Rigorous cleaning of the dataset, including handling missing values, removing duplicates, and filtering out cancelled or invalid transactions.
+3.  **Feature Engineering**: Transforming the transaction-level data into a customer-level RFM (Recency, Frequency, Monetary) table, along with additional metrics like Average Order Value.
+4.  **Exploratory Data Analysis (EDA)**: Visualizing distributions, identifying outliers, and uncovering sales patterns across different countries and products.
+5.  **Clustering Preprocessing**: Handling data skewness using log transformation and standardizing features for the K-Means algorithm.
+6.  **K-Means Clustering**: Using the Elbow Method to determine the optimal number of segments and training the clustering model.
+7.  **Cluster Interpretation**: Detailed analysis of the resulting customer personas based on their purchasing behavior.
+8.  **Strategic Recommendations**: Formulating actionable business strategies for each identified customer segment to improve retention and revenue.
 
 ## Data Cleaning Summary
 Before diving into analysis, the dataset required rigorous cleaning to ensure data integrity. Here is a clear explanation of every cleaning step performed:
